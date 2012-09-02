@@ -1,16 +1,16 @@
 
-/**
- * Module dependencies.
- */
-
-var express = require('express')
-  , routes = require('./routes')
-  , http = require('http')
-  , path = require('path');
+// Module dependencies.
+var express = require('express');
+var routes = require('./routes');
+var http = require('http');
+var path = require('path');
+var mysql = require('mysql');
 
 var app = express();
 
-app.configure(function(){
+
+// Configuration.
+app.configure(function() {
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
@@ -24,12 +24,72 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
-app.configure('development', function(){
+app.configure('development', function() {
   app.use(express.errorHandler());
 });
 
+
+// Mysql config.
+var conn = mysql.createConnection({
+  host : 'localhost',
+  user : 'root',
+  password : 'root',
+  database: 'allergy_test'
+});
+
+
+// Initial setup for setting app-wide variables.
+app.set('title', 'Allergy Test');
+
+function storeAllergyDataInMemory() {
+  conn.connect();
+  conn.query('SELECT product, ingredient FROM product_ingredients ORDER BY product, ingredient', function(err, results) {
+    if (err) throw err;
+    
+    var products = [];
+    var ingredients = [];
+    var productIngredientsData = {};
+
+    for (var i=0; i < results.length; i++) {
+      var row = results[i];
+      var product = row['product'];
+      var ingredient = row['ingredient'];
+
+      // Add product.
+      if (products.indexOf(product) === -1) {
+        products.push(product);
+      }
+
+      // Add ingredient.
+      if (ingredients.indexOf(ingredient) === -1) {
+        ingredients.push(ingredient);
+      }
+      
+      if (!productIngredientsData[product]) {
+        productIngredientsData[product] = [];
+      }
+      productIngredientsData[product].push(ingredient);
+    }
+
+    products.sort();
+    ingredients.sort();
+
+    // FIXME: Probably want to JSONify these.
+    app.set('products', products);
+    app.set('ingredients', ingredients);
+    app.set('productIngredientsData', productIngredientsData);
+  });
+
+  conn.end();
+}
+storeAllergyDataInMemory();
+
+
+// Route handlers.
 app.get('/', routes.index);
 
-http.createServer(app).listen(app.get('port'), function(){
+
+// Start listening.
+http.createServer(app).listen(app.get('port'), function() {
   console.log("Express server listening on port " + app.get('port'));
 });

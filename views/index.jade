@@ -1,8 +1,8 @@
 extends layout
 
 block content
+
   table
-    - each result in results
+    - each ingredient in settings.ingredients
       tr
-        td= result["product"]
-        td= result["ingredient"]
+        td= ingredient
