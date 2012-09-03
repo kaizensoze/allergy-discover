@@ -75,8 +75,8 @@ function storeAllergyDataInMemory() {
     ingredients.sort();
 
     // FIXME: Probably want to JSONify these.
-    app.set('products', products);
-    app.set('ingredients', ingredients);
+    app.set('products', JSON.stringify(products));
+    app.set('ingredients', JSON.stringify(ingredients));
     app.set('productIngredientsData', productIngredientsData);
   });
 

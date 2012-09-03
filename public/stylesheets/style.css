@@ -1,16 +1,40 @@
 
 table {
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 table, th, td {
-  border: 1px solid black;
+  /*border: 1px solid black;*/
 }
 
 td {
   white-space: nowrap;
+  overflow: hidden;
+}
+
+td.product,
+td.ingredient {
+  width: 75%;
+}
+
+td.remove {
+  width: 19%;
 }
 
 div#tabs {
   width: 45%;
+}
+
+input#products,
+input#ingredients {
+  width: 84%;
+  height: 31px;
+  margin-right: 5px;
+}
+
+table#products,
+table#ingredients {
+  width: 583px;
+  margin-top: 18px;
 }
