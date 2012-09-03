@@ -13,8 +13,8 @@ td {
   overflow: hidden;
 }
 
-td.product,
-td.ingredient {
+td.products,
+td.ingredients {
   width: 75%;
 }
 

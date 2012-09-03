@@ -18,28 +18,46 @@ function setup() {
   // Products.
   $("input#products").autocomplete({
     source: products
+  })
+  .keydown(function(evt) {
+    switch (evt.keyCode) {
+      case 13:
+        addEntry( $(this).attr('id') );
+        return false;
+    }
+    return;
   });
+
   $("button#add-product").button();
   $("button#add-product").click(function() {
-    var $productsInput = $("input#products");
-    var productToAdd = $productsInput.val();
-    $('table#products > tbody:last').append( getRowHTML("product", productToAdd) );
-    $("button.remove").button();
-    $productsInput.val('').focus();
+    addEntry("products");
   });
 
   // Ingredients.
   $("input#ingredients").autocomplete({
     source: ingredients
+  })
+  .keydown(function(evt) {
+    switch (evt.keyCode) {
+      case 13:
+        addEntry( $(this).attr('id') );
+        return false;
+    }
+    return;
   });
+
   $("button#add-ingredient").button();
   $("button#add-ingredient").click(function() {
-    var $ingredientsInput = $("input#ingredients");
-    var ingredientToAdd = $ingredientsInput.val();
-    $('table#ingredients > tbody:last').append( getRowHTML("ingredient", ingredientToAdd) );
-    $("button.remove").button();
-    $ingredientsInput.val('').focus();
+    addEntry("ingredients");
   });
+
+  function addEntry(elemId) {
+    var $entryInput = $("input#"+elemId);
+    var entryToAdd = $entryInput.val();
+    $('table#'+elemId+' > tbody:last').append( getRowHTML(elemId, entryToAdd) );
+    $("button.remove").button();
+    $entryInput.val('').focus();
+  }
 
   function getRowHTML(tdClassName, tdContent) {
     return '<tr><td class="'+tdClassName+'">'+tdContent+'</td><td class="remove"><button class="remove">Remove</button></td></tr>';
