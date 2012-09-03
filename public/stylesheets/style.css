@@ -10,3 +10,7 @@ table, th, td {
 td {
   white-space: nowrap;
 }
+
+div#tabs {
+  width: 45%;
+}

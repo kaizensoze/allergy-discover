@@ -1,8 +1,18 @@
 extends layout
 
 block content
+  script
+    $(function() {
+      $( "#tabs" ).tabs();
+    });
+  
+  div.demo
 
-  table
-    - each ingredient in settings.ingredients
-      tr
-        td= ingredient
+  div#tabs
+    ul
+      li: a(href='#tabs-1') Products
+      li: a(href='#tabs-2') Ingredients
+    div#tabs-1
+      p Products Content
+    div#tabs-2
+      p Ingredients Content
