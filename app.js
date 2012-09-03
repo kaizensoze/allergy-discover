@@ -48,7 +48,8 @@ function storeAllergyDataInMemory() {
     
     var products = [];
     var ingredients = [];
-    var productIngredientsData = {};
+    var productIngredients = {};
+    var ingredientProducts = {};
 
     for (var i=0; i < results.length; i++) {
       var row = results[i];
@@ -65,10 +66,15 @@ function storeAllergyDataInMemory() {
         ingredients.push(ingredient);
       }
       
-      if (!productIngredientsData[product]) {
-        productIngredientsData[product] = [];
+      if (!productIngredients[product]) {
+        productIngredients[product] = [];
       }
-      productIngredientsData[product].push(ingredient);
+      productIngredients[product].push(ingredient);
+
+      if (!ingredientProducts[ingredient]) {
+        ingredientProducts[ingredient] = [];
+      }
+      ingredientProducts[ingredient].push(product);
     }
 
     products.sort();
@@ -76,7 +82,8 @@ function storeAllergyDataInMemory() {
 
     app.set('products', JSON.stringify(products));
     app.set('ingredients', JSON.stringify(ingredients));
-    app.set('productIngredientsData', JSON.stringify(productIngredientsData));
+    app.set('productIngredients', JSON.stringify(productIngredients));
+    app.set('ingredientProducts', JSON.stringify(ingredientProducts));
   });
 
   conn.end();

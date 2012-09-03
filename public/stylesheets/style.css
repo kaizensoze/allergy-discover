@@ -4,13 +4,9 @@ table {
   table-layout: fixed;
 }
 
-table, th, td {
-  /*border: 1px solid black;*/
-}
-
 td {
   white-space: nowrap;
-  overflow: hidden;
+  overflow-x: auto;
 }
 
 td.products,
@@ -36,19 +32,25 @@ input#ingredients {
 
 table#products,
 table#ingredients {
-  width: 583px;
+  width: 588px;
   margin-top: 18px;
 }
 
-div#common-ingredients,
-div#common-products {
+table#common-ingredients,
+table#common-products {
   float: left;
-  width: 50%;
-  height: 400px;
+  width: 40%;
   border: 1px solid black;
+  margin-left: 29px;
+  margin-bottom: 15px;
   display: none;
 }
 
-div#common-products {
-  display: none;
+table#common-ingredients tr,
+table#common-products tr {
+  border: 1px solid black;
+}
+
+button.remove .ui-button-text {
+  color: red;
 }
