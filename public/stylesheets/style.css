@@ -24,6 +24,7 @@ td.remove {
 
 div#tabs {
   width: 45%;
+  float: left;
 }
 
 input#products,
@@ -37,4 +38,17 @@ table#products,
 table#ingredients {
   width: 583px;
   margin-top: 18px;
+}
+
+div#common-ingredients,
+div#common-products {
+  float: left;
+  width: 50%;
+  height: 400px;
+  border: 1px solid black;
+  display: none;
+}
+
+div#common-products {
+  display: none;
 }
