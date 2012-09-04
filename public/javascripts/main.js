@@ -1,4 +1,6 @@
 
+$(document).ready(setup);
+
 function renderTabs() {
   $("#tabs").tabs({
     show: function(event, ui) {
