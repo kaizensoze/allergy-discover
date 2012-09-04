@@ -1,6 +1,5 @@
 
 function renderTabs() {
-  console.log('render tabs');
   $("#tabs").tabs({
     show: function(event, ui) {
       switch(ui.panel.id) {
@@ -24,7 +23,6 @@ function renderTabs() {
 }
 
 function setup() {
-  console.log('setup');
   // Products.
   $("input#products").autocomplete({
     source: products
