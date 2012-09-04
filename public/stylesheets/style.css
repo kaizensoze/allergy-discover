@@ -19,7 +19,7 @@ td.ingredients {
 }
 
 td.remove {
-  width: 19%;
+  width: 21.7%;
 }
 
 div#tabs {
@@ -29,7 +29,7 @@ div#tabs {
 
 input#products,
 input#ingredients {
-  width: 80%;
+  width: 77%;
   height: 31px;
   margin-right: 5px;
 }
