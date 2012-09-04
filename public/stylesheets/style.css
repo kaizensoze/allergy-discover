@@ -9,9 +9,13 @@ td {
   overflow-x: auto;
 }
 
+td.remove {
+  overflow: visible;
+}
+
 td.products,
 td.ingredients {
-  width: 75%;
+  /*width: 75%;*/
 }
 
 td.remove {
@@ -25,14 +29,14 @@ div#tabs {
 
 input#products,
 input#ingredients {
-  width: 84%;
+  width: 80%;
   height: 31px;
   margin-right: 5px;
 }
 
 table#products,
 table#ingredients {
-  width: 588px;
+  width: 100%;
   margin-top: 18px;
 }
 
