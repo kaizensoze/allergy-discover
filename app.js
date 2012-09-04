@@ -74,7 +74,9 @@ function storeAllergyDataInMemory() {
       if (!ingredientProducts[ingredient]) {
         ingredientProducts[ingredient] = [];
       }
-      ingredientProducts[ingredient].push(product);
+      if (ingredientProducts[ingredient].indexOf(product) === -1) {
+        ingredientProducts[ingredient].push(product);
+      }
     }
 
     products.sort();
