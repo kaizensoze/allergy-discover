@@ -27,7 +27,15 @@ function renderTabs() {
 function setup() {
   // Products.
   $("input#products").autocomplete({
-    source: products
+    source: function(req, responseFn) {
+      var re = $.ui.autocomplete.escapeRegex(req.term);
+      var matcher = new RegExp( "^" + re, "i" );
+      var a = $.grep(products, function(item, index) {
+        return matcher.test(item);
+      });
+      responseFn(a);
+    },
+    delay: 0
   })
   .keydown(function(evt) {
     switch (evt.keyCode) {
@@ -45,7 +53,15 @@ function setup() {
 
   // Ingredients.
   $("input#ingredients").autocomplete({
-    source: ingredients
+    source: function(req, responseFn) {
+      var re = $.ui.autocomplete.escapeRegex(req.term);
+      var matcher = new RegExp( "^" + re, "i" );
+      var a = $.grep(ingredients, function(item, index) {
+        return matcher.test(item);
+      });
+      responseFn(a);
+    },
+    delay: 0
   })
   .keydown(function(evt) {
     switch (evt.keyCode) {
@@ -62,6 +78,7 @@ function setup() {
   });
 
   function addEntry(elemId) {
+    alert(window[elemId]);
     var $entryInput = $("input#"+elemId);
     var entryToAdd = $entryInput.val();
     if (window[elemId].indexOf(entryToAdd) === -1) {
