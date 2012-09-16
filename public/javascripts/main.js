@@ -78,9 +78,9 @@ function setup() {
   });
 
   function addEntry(elemId) {
-    alert(window[elemId]);
     var $entryInput = $("input#"+elemId);
     var entryToAdd = $entryInput.val();
+
     if (window[elemId].indexOf(entryToAdd) === -1) {
       return;
     }
@@ -139,5 +139,17 @@ function setup() {
       var commonEntry = commonEntries[i];
       $('table#common-'+tableToInsertIntoElemId+' > tbody:last').append('<tr><td>'+commonEntry+'</td></tr>');
     }
+  }
+}
+
+// For IE 7,8.
+if(!Array.indexOf) {
+  Array.prototype.indexOf = function(obj) {
+    for (var i=0; i < this.length; i++) {
+      if (this[i] == obj) {
+        return i;
+      }
+    }
+    return -1;
   }
 }
