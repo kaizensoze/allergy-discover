@@ -1,4 +1,8 @@
 
+body {
+  font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+}
+
 table {
   border-collapse: collapse;
   table-layout: fixed;
@@ -11,11 +15,6 @@ td {
 
 td.remove {
   overflow: visible;
-}
-
-td.products,
-td.ingredients {
-  /*width: 75%;*/
 }
 
 td.remove {
@@ -44,15 +43,28 @@ table#common-ingredients,
 table#common-products {
   float: left;
   width: 40%;
-  border: 1px solid black;
+  border: 1px solid #DDD;
   margin-left: 29px;
   margin-bottom: 15px;
+  background-color: #F2F5F7;
   display: none;
 }
 
 table#common-ingredients tr,
 table#common-products tr {
-  border: 1px solid black;
+  border: 1px solid #DDD;
+}
+
+table#common-ingredients th,
+table#common-products th {
+  font-size: 1.1em;
+  color: #2779B5;
+  border: 1px solid #DDD;
+}
+
+table#common-ingredients td,
+table#common-products td {
+  padding: 5px;
 }
 
 button.remove .ui-button-text {
