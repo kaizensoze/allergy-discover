@@ -86,35 +86,42 @@ function setup() {
     }
     $('table#'+elemId+' > tbody:last').append( getRowHTML(elemId, entryToAdd) );
     $("button.remove").button();
-    updateCommonIngredients(elemId);
+    updateCommonTable(elemId);
     $entryInput.val('').focus();
   }
 
   function getRowHTML(tdClassName, tdContent) {
-    return '<tr><td class="'+tdClassName+'">'+tdContent+'</td><td class="remove"><button class="remove">Remove</button></td></tr>';
+    return '<tr><td class="'+tdClassName+'-active"><input type="checkbox" name="'+tdClassName+'" checked/></td><td class="'+tdClassName+' active">'+tdContent+'</td><td class="remove"><button class="remove">Remove</button></td></tr>';
   }
 
   var twoTables = $("table#products").add($("table#ingredients"));
-  twoTables.delegate("button.remove", "click", function() {
+  twoTables
+  .delegate("button.remove", "click", function() {
     var tableId = $(this).closest('table').attr('id');
 
     var $thisRow = $(this).parent().parent();
     $thisRow.remove();
 
-    updateCommonIngredients(tableId);
+    updateCommonTable(tableId);
 
     $("input#" + tableId).focus();
+  }).delegate("input:checkbox", "click", function() {
+    var checkboxName = $(this).attr('name');
+    updateCommonTable(checkboxName);
   });
 
-  function updateCommonIngredients(elemId) {
+  function updateCommonTable(elemId) {
     var tableToInsertIntoElemId = (elemId === 'products') ? 'ingredients' : 'products';
     $('table#common-'+tableToInsertIntoElemId+' tr:gt(0)').remove();
 
     var selectedEntries = [];
 
     $('table#'+elemId+' tr td.'+elemId).each(function() {
+      var $checkbox = $(this).prev().find('input');
       var entry = $(this).text();
-      selectedEntries.push(entry);
+      if ($checkbox.is(':checked')) {
+        selectedEntries.push(entry);
+      }
     });
 
     var associatedEntriesSets = [];

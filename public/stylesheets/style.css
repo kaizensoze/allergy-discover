@@ -13,12 +13,21 @@ td {
   overflow-x: auto;
 }
 
+td.products-active,
+td.ingredients-active {
+  width: 5%;
+}
+
 td.remove {
   overflow: visible;
 }
 
 td.remove {
-  width: 21.7%;
+  width: 17.5%;
+}
+
+button.remove .ui-button-text {
+  color: red;
 }
 
 div#tabs {
@@ -37,6 +46,7 @@ table#products,
 table#ingredients {
   width: 100%;
   margin-top: 18px;
+  margin-left: -26px;
 }
 
 table#common-ingredients,
@@ -65,8 +75,4 @@ table#common-products th {
 table#common-ingredients td,
 table#common-products td {
   padding: 5px;
-}
-
-button.remove .ui-button-text {
-  color: red;
 }
