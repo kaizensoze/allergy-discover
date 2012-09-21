@@ -10,7 +10,13 @@ Anemone.crawl("http://householdproducts.nlm.nih.gov/cgi-bin/household/list?tbl=T
   anemone.on_pages_like(/\/cgi-bin\/household\/brands\?tbl=brands&id=\d+$/) do |page|  # /\/cgi-bin\/household\/brands\?tbl=brands&id=19033001/
     page_doc = page.doc
     product = page_doc.css('.bodytext')[0].text
-    puts "#{page.url}   -    #{product} "
+
+    # Leave this out for now.
+    # product.gsub!(/-\d+\/\d+\/\d+$/, '')
+    # product.gsub!(/-Old Product$/, '')
+    # product.gsub!(/-discontinued$/, '')
+
+    # puts "#{page.url}   -    #{product}"
 
     ingredient_tds = page_doc.css('table')[-2].css('tr')[1..-1].css('td')
 
