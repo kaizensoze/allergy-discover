@@ -25,19 +25,20 @@ function renderTabs() {
 }
 
 function setup() {
-  // Products.
+  // Autocomplete.
   $("input#products").autocomplete({
-    source: function(req, responseFn) {
-      var re = $.ui.autocomplete.escapeRegex(req.term);
-      var matcher = new RegExp( "^" + re, "i" );
-      var a = $.grep(products, function(item, index) {
-        return matcher.test(item);
-      });
-      responseFn(a);
-    },
-    delay: 0
-  })
-  .keydown(function(evt) {
+    source: autocompleteProductSource,
+    delay: 0,
+    autoFocus: true
+  });
+
+  $("input#ingredients").autocomplete({
+    source: autocompleteIngredientSource,
+    delay: 0,
+    autoFocus: true
+  });
+
+  $("input#products, input#ingredients").keydown(function(evt) {
     switch (evt.keyCode) {
       case 13:
         addEntry( $(this).attr('id') );
@@ -46,30 +47,27 @@ function setup() {
     return;
   });
 
+  function autocompleteProductSource(req, responseFn) {
+    autocompleteSource(req, responseFn, products);
+  }
+
+  function autocompleteIngredientSource(req, responseFn) {
+    autocompleteSource(req, responseFn, ingredients);
+  }
+
+  function autocompleteSource(req, responseFn, dataSource) {
+    var re = $.ui.autocomplete.escapeRegex(req.term);
+    var matcher = new RegExp("^" + re, "i");
+    var a = $.grep(dataSource, function(item, index) {
+      return matcher.test(item);
+    });
+    responseFn(a);
+  }
+
+  // Add buttons.
   $("button#add-product").button();
   $("button#add-product").click(function() {
     addEntry("products");
-  });
-
-  // Ingredients.
-  $("input#ingredients").autocomplete({
-    source: function(req, responseFn) {
-      var re = $.ui.autocomplete.escapeRegex(req.term);
-      var matcher = new RegExp( "^" + re, "i" );
-      var a = $.grep(ingredients, function(item, index) {
-        return matcher.test(item);
-      });
-      responseFn(a);
-    },
-    delay: 0
-  })
-  .keydown(function(evt) {
-    switch (evt.keyCode) {
-      case 13:
-        addEntry( $(this).attr('id') );
-        return false;
-    }
-    return;
   });
 
   $("button#add-ingredient").button();
