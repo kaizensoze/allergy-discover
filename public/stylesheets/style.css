@@ -10,7 +10,7 @@ table {
 
 td {
   white-space: nowrap;
-  overflow-x: auto;
+  /*overflow-x: auto;*/
 }
 
 td.products-active,
@@ -52,7 +52,7 @@ table#ingredients {
 table#common-ingredients,
 table#common-products {
   float: left;
-  width: 40%;
+  width: 44%;
   border: 1px solid #DDD;
   margin-left: 29px;
   margin-bottom: 15px;
