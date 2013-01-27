@@ -1,6 +1,16 @@
 extends layout
 
 block content
+  span.description.ui-widget-content.ui-corner-all
+    p
+      | Discovering what you're allergic to can be a tedious process. This interface is meant to help <br />
+      | make that process a little easier. For either tab, start typing to select an item from the <br />
+      | drop-down list.
+    p 
+      | The Products tab will show you what ingredients your selected products have in common.
+    p
+      | The Ingredients tab will show you which products contain your selected ingredients.
+
   div#tabs
     ul
       li: a(href='#tabs-1') Products

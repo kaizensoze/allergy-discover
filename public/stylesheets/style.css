@@ -3,6 +3,17 @@ body {
   font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
 }
 
+span.description {
+  display: table;
+  font: 15px/22.5px "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+  color: #362b36;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+}
+
 table {
   border-collapse: collapse;
   table-layout: fixed;
