@@ -32,14 +32,14 @@ app.configure('development', function() {
 // Mysql config.
 var conn = mysql.createConnection({
   host : 'localhost',
-  user : 'root',
-  password : 'root',
+  user : 'allergy',
+  password : 'allergy',
   database: 'allergy_test'
 });
 
 
 // Initial setup for setting app-wide variables.
-app.set('title', 'Allergy Test');
+app.set('title', 'Allergy Discover');
 
 function storeAllergyDataInMemory() {
   conn.connect();
@@ -94,7 +94,7 @@ storeAllergyDataInMemory();
 
 
 // Route handlers.
-app.get('/', routes.index);
+app.get('/allergy', routes.index);
 
 
 // Start listening.

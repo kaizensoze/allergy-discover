@@ -1,7 +1,14 @@
 
 require 'mysql2'
 
-client = Mysql2::Client.new(:host => "localhost", :username => "allergytest", :password => "allergytest", :database => "allergy_test")
+db_connection = {
+  :host => "localhost",
+  :username => "allergy",
+  :password => "allergy",
+  :database => "allergy_test"
+}
+
+client = Mysql2::Client.new(db_connection)
 
 results = client.query "SELECT product, ingredient FROM product_ingredients"
 results.each do |row|
