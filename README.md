@@ -24,6 +24,7 @@ gem install nokogiri -- --use-system-libraries
 gem install anemone
 
 mysql -uroot -e 'create database allergy_test'
+mysql -uroot -e "CREATE USER 'allergy'@'localhost' IDENTIFIED BY 'allergy'"
 mysql -uroot -e "grant all privileges on allergy_test.* to 'allergy'@'localhost' with grant option"
 
 # Info
